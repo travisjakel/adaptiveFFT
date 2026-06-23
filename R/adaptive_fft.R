@@ -747,7 +747,7 @@ plot.adaptive_fft <- function(x,
     data.test = as.data.frame(te2), algorithm = algorithm,
     max.levels = max.levels, numthresh.n = numthresh.n,
     goal = goal, goal.chase = goal, goal.threshold = goal,
-    quiet = list(ini=TRUE,fin=TRUE,mis=TRUE,set=TRUE), do.comp = FALSE
+    quiet = list(ini=TRUE,fin=TRUE,mis=TRUE,set=TRUE)
   )
   elapsed <- as.numeric(difftime(Sys.time(), t0, units = "secs"))
   best_i <- FFTrees::get_best_tree(fit, data = "train", goal = goal)
