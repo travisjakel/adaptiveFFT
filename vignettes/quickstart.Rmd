@@ -1,0 +1,87 @@
+---
+title: "Quickstart: fitting an adaptive FFT"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quickstart: fitting an adaptive FFT}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment  = "#>",
+  fig.width  = 9,
+  fig.height = 8
+)
+set.seed(2026)
+```
+
+`adaptiveFFT` fits chain Fast-and-Frugal Trees (depth ≤ 4, one cue per
+node, binary exits) and additionally races two FFT families on an inner
+holdout to pick the better one for each dataset.
+
+## Load a dataset and split
+
+```{r}
+library(adaptiveFFT)
+
+d <- load_fft_dataset("heartdisease")
+in_tr <- make_split(d$y, seed = 2026L + 1001L)
+tr <- d[in_tr]; te <- d[!in_tr]
+nrow(tr); nrow(te)
+```
+
+## Fit and inspect
+
+```{r}
+fit <- adaptive_fft(tr, te, dataset_name = "heartdisease",
+                    baselines = list(`ifan (paper)` = 0.787))
+print(fit)
+```
+
+`fit$winner` is whichever family won the inner race; `fit$chain` shows the
+predicate sequence of the winning tree.
+
+## Plot
+
+The default `plot()` renders a 4-panel figure mirroring FFTrees' visual
+grammar — tree with side icon arrays, confusion matrix, test metrics, and
+Δ-vs-baseline plot:
+
+```{r, eval = FALSE}
+plot(fit)
+```
+
+You can request individual panels:
+
+```{r, eval = FALSE}
+plot(fit, what = "tree")
+plot(fit, what = "perf")
+```
+
+Or save publication-ready output:
+
+```{r, eval = FALSE}
+plot(fit, save_to = "fig_demo")  # writes fig_demo.{pdf,png}
+```
+
+## Standalone beam search
+
+If you only want the chain-FFT search without the inner race:
+
+```{r, eval = FALSE}
+r <- run_beam_fft(tr, te, max_levels = 4L, beam_B = 10L,
+                  max_thresholds_per_cue = 5L, item_cap = 50L)
+m_bacc(te$y, r$pred)
+```
+
+## Reproduce the paper's benchmark
+
+The bundled benchmark script reproduces the 14 datasets × 20 seeds grid:
+
+```{r, eval = FALSE}
+system.file("bench", "run_full_bench.R", package = "adaptiveFFT")
+```
+
+See the `Benchmarking` vignette for details.

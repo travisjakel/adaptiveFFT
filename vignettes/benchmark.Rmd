@@ -1,0 +1,71 @@
+---
+title: "Reproducing the benchmark"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reproducing the benchmark}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+```
+
+The package ships the full bench harness used in Jakel (2026): 14 of the
+FFTrees-bundled datasets × 20 stratified 70/30 splits × all runners.
+
+## Datasets
+
+```{r}
+library(adaptiveFFT)
+FFT_DATASETS
+```
+
+## One full run
+
+The driver script lives at `inst/bench/run_full_bench.R`:
+
+```{r}
+script <- system.file("bench", "run_full_bench.R", package = "adaptiveFFT")
+file.show(script)
+# source(script)   # ~3-4 hours on a single core
+```
+
+Output is appended to `inst/bench/results/baseline_bench.fst` as a long
+`data.table`:
+
+```
+dataset, seed_idx, runner, acc, bacc, f1, auc, frugality, train_time,
+n_test, n_pos_test, notes
+```
+
+## Pre-computed results
+
+For convenience, the FST containing all 5,824 rows of the published bench
+is included at `inst/bench/results/baseline_bench.fst`:
+
+```{r}
+res <- fst::read_fst(
+  system.file("bench", "results", "baseline_bench.fst", package = "adaptiveFFT"))
+str(res)
+```
+
+## Headline numbers (paper Table 1)
+
+```{r}
+library(data.table)
+dt <- as.data.table(res)
+dt[seed_idx <= 20L,
+   .(mean_bacc = round(mean(bacc, na.rm = TRUE), 3),
+     n         = .N),
+   by = runner][order(-mean_bacc)]
+```
+
+## Statistical tests
+
+The dataset-level Wilcoxon signed-rank + rank-biserial effect-size
+analysis used in the paper is reproduced by `inst/bench/make_stats.R`:
+
+```{r}
+source(system.file("bench", "make_stats.R", package = "adaptiveFFT"))
+```

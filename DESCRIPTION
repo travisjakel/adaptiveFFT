@@ -1,0 +1,50 @@
+Package: adaptiveFFT
+Title: Adaptive Fast-and-Frugal Trees with Inner-Holdout Family Selection
+Version: 0.1.0
+Authors@R:
+    c(person(given = "Travis", family = "Jakel",
+             email = "travis.s.jakel@gmail.com",
+             role = c("aut", "cre"),
+             comment = c(affiliation = "Asset Flow Capital")),
+      person(given = "Asset Flow Capital", role = "cph"))
+Description: Chain Fast-and-Frugal Trees (FFTs) of depth at most four, with
+    one cue per node and binary exits, fit by either the FFTrees greedy
+    'ifan' algorithm or by a beam search over the chain space whose
+    hyperparameters were selected via D-optimal Design of Experiments.
+    The 'adaptive_fft()' constructor performs an inner-holdout race
+    between the two families and refits the winner on the full training
+    set. Includes the 14-dataset benchmark harness (FFTrees-bundled
+    datasets) used in Jakel (2026) showing a +1.4 pp balanced-accuracy
+    point estimate over 'ifan' across 14 datasets x 20 stratified seeds
+    while preserving strict chain-FFT structure.
+License: GPL (>= 3)
+Encoding: UTF-8
+Depends:
+    R (>= 4.1.0)
+Imports:
+    data.table,
+    FFTrees,
+    ggplot2,
+    patchwork,
+    scales,
+    stats,
+    grDevices,
+    utils
+Suggests:
+    fst,
+    rpart,
+    C50,
+    rmarkdown,
+    knitr,
+    testthat (>= 3.0.0),
+    plotly,
+    shiny,
+    bslib,
+    DT
+LazyData: false
+RoxygenNote: 7.3.2
+URL: https://github.com/travisjakel/adaptiveFFT,
+    https://travisjakel.github.io/adaptiveFFT
+BugReports: https://github.com/travisjakel/adaptiveFFT/issues
+Config/testthat/edition: 3
+VignetteBuilder: knitr

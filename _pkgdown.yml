@@ -1,0 +1,54 @@
+url: https://travisjakel.github.io/adaptiveFFT
+title: adaptiveFFT
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+reference:
+  - title: "Adaptive constructor"
+    contents:
+      - adaptive_fft
+      - print.adaptive_fft
+      - summary.adaptive_fft
+      - plot.adaptive_fft
+  - title: "Standalone beam search"
+    contents:
+      - run_beam_fft
+  - title: "Datasets and splits"
+    contents:
+      - FFT_DATASETS
+      - load_fft_dataset
+      - make_split
+  - title: "Metrics"
+    contents:
+      - score_all
+      - m_bacc
+      - m_acc
+      - m_f1
+      - m_auc
+      - m_frugality
+      - confusion
+
+articles:
+  - title: "Get started"
+    contents:
+      - quickstart
+      - benchmark
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [github]
+  components:
+    intro:
+      text: Quickstart
+      href: articles/quickstart.html
+
+home:
+  links:
+    - text: arXiv preprint
+      href: https://arxiv.org/abs/XXXX.XXXXX
+    - text: Zenodo DOI
+      href: https://doi.org/10.5281/zenodo.XXXXXXX
+    - text: Maintainer — Asset Flow Capital
+      href: https://assetflow.ai

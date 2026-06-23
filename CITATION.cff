@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use adaptiveFFT in academic work, please cite both the package and the accompanying paper."
+title: "adaptiveFFT: Adaptive Fast-and-Frugal Trees with Inner-Holdout Family Selection"
+type: software
+version: 0.1.0
+date-released: 2026-04-28
+authors:
+  - family-names: "Jakel"
+    given-names: "Travis"
+    email: travis.s.jakel@gmail.com
+    affiliation: "Asset Flow Capital"
+    website: "https://assetflow.ai"
+license: GPL-3.0-or-later
+repository-code: "https://github.com/travisjakel/adaptiveFFT"
+preferred-citation:
+  type: article
+  title: "Adaptive Fast-and-Frugal Trees: Model-Family Selection Narrows the Gap to Optimal Sparse Trees on Imbalanced Benchmarks"
+  authors:
+    - family-names: "Jakel"
+      given-names: "Travis"
+      affiliation: "Asset Flow Capital"
+  year: 2026
+  journal: "arXiv preprint"
+  doi: "10.48550/arXiv.XXXX.XXXXX"

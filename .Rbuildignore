@@ -1,0 +1,16 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
+^README\.Rmd$
+^paper$
+^\.gitignore$
+^\.Rbuildignore$
+^CRAN-SUBMISSION$
+^CITATION\.cff$
+^cran-comments\.md$
+^LICENSE\.md$
+^codecov\.yml$
+^_FFT_improve$
