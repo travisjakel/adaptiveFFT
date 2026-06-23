@@ -10,7 +10,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/travisjakel/adaptiveFFT/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/travisjakel/adaptiveFFT/blob/v0.1.0/DESCRIPTION)
 
 Jakel T (2026). *adaptiveFFT: Adaptive Fast-and-Frugal Trees with
 Inner-Holdout Family Selection*. R package version 0.1.0,
